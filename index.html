@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday!</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #000000, #434343);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .postcard {
+        text-align: center;
+        padding: 40px;
+        border-radius: 15px;
+        /* max-width: 800px; */
+        width: 100%;
+        z-index: 2;
+        position: relative;
+        color: #fff;
+      }
+      h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        background: linear-gradient(to right, #f5b700, #e6ac00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: slideIn 1s ease-out;
+      }
+      @keyframes slideIn {
+        from {
+          transform: translateY(-20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+      }
+      .button-container {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+      }
+      button {
+        padding: 12px 30px;
+        background: linear-gradient(135deg, #f5b700, #e6ac00);
+        border: none;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      button:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+      .message {
+        margin-top: 30px;
+        display: none;
+        font-size: 1.5em;
+        background: linear-gradient(to right, #f5b700, #e6ac00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: fadeIn 1s ease-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .drawing {
+        margin-top: 20px;
+        font-size: 1.5em;
+        color: #fbc02d;
+      }
+      .background-bubbles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .bubble {
+        position: absolute;
+        bottom: -150px;
+        background: linear-gradient(135deg, #f5b700, #e6ac00, #d4a900, #b89b00);
+        border-radius: 50%;
+        animation: bubble-rise 10s infinite;
+      }
+      @keyframes bubble-rise {
+        0% {
+          transform: translateY(0);
+          opacity: 0.5;
+        }
+        100% {
+          transform: translateY(-150vh);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Bubbles background -->
+    <div class="background-bubbles"></div>
+
+    <div class="postcard">
+      <h1>Happy Birthday, Brother!</h1>
+      <p>Tap the button to reveal a special message just for you 🎨</p>
+      <div class="button-container">
+        <button onclick="revealMessage()">Show Message</button>
+      </div>
+      <p class="message" id="birthdayMessage">
+        ውንድሜ እንኳን ተወለድክ። አዲሱ ዘመንክ የተባረከ ስኬታማ የምትሆንበት ወደ ፈጣሪ ይበልጥ የምትቀርብበት ምኞትህ
+        የሚጠቅምህ ከሆነ የሚሳካበት ደስተኛ የምትሆንበት የመሳል ጥበብህን ይበልጥ የምታሳድግበት ትልቅ አርቲስት
+        የምትሆንበት መልካም አመት ይሆንልህ ዘንድ እመኝልሃለው መልካም
+        ልደት!!!!!!🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂
+      </p>
+      <p class="drawing">
+        "Great artists don't just see the world—they create it!"
+      </p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+      // GSAP Animation for message reveal
+      function revealMessage() {
+        const message = document.getElementById("birthdayMessage");
+        gsap.to(message, { duration: 1, display: "block", opacity: 1 });
+      }
+
+      // Start bubble animation
+      function createBubbles() {
+        const bubbleContainer = document.querySelector(".background-bubbles");
+        for (let i = 0; i < 20; i++) {
+          const bubble = document.createElement("div");
+          bubble.classList.add("bubble");
+          bubble.style.left = `${Math.random() * 100}vw`;
+          bubble.style.width = `${Math.random() * 60 + 20}px`;
+          bubble.style.height = bubble.style.width;
+          bubble.style.animationDuration = `${Math.random() * 10 + 5}s`;
+          bubbleContainer.appendChild(bubble);
+        }
+      }
+
+      createBubbles();
+    </script>
+  </body>
+</html>
